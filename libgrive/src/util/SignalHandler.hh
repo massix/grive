@@ -32,14 +32,6 @@ public :
 	virtual ~SignalError() throw () ;
 };
 
-class SignalFunctor
-{
-public :
-	SignalFunctor() ;
-	virtual ~SignalFunctor() ;
-	static void Callback( int signumber ) ;
-};
-
 class SignalHandler
 {
 	typedef void (*Callback)(int);
@@ -50,10 +42,11 @@ public :
 	void RegisterSignal ( unsigned int signumber, Callback callback ) ;
 	void UnregisterSignal( unsigned int signumber );
 	static SignalHandler& GetInstance() ;
+
 private :
 	SignalHandler() ;
 	SignalHandler( const SignalHandler& right ) ;
-	SignalHandler& operator==( const SignalHandler& right ) ;
+	SignalHandler& operator=( const SignalHandler& right ) ;
 
 	signals_t m_signals;
 	signals_t m_signalsOld;
